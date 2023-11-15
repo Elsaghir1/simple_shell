@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef SHELL_H
+#define SHELL_H
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -12,21 +12,21 @@
 #include <time.h>
 #include <stdbool.h>
 
-/* enviroment variables */
-extern char **enviro;
+/* environment variables */
+extern char **environ;
 extern __sighandler_t signal(int __sig, __sighandler_t __handler);
 
-/* handle builtins */
+/* handle built ins */
 int checker(char **cmd, char *buf);
 void prompt_user(void);
 void handle_signal(int m);
 char **tokenizer(char *line);
 char *test_path(char **path, char *command);
 char *append_path(char *path, char *command);
-int handle_builtin(char **command, char *line);
+int handle_built_in(char **command, char *line);
 void exit_cmd(char **command, char *line);
 
-void print_env(void);
+void print_enviro(void);
 
 /* string handlers */
 int _strcmp(char *s1, char *s2);
@@ -38,24 +38,24 @@ char *_strchr(char *s, char c);
 void execution(char *cp, char **cmd);
 char *find_path(void);
 
-/* helper function for efficient free */
-void free_buffers(char **buf);
+/* efficient free */
+void free_buff(char **buf);
 
-struct builtin
+struct built_in
 {
-	char *env;
+	char *enviro;
 	char *exit;
-} builtin;
+} built_in;
 
-struct info
+struct inf
 {
 	int final_exit;
-	int ln_count;
-} info;
+	int line_count;
+} inf;
 
-struct flags
+struct flag
 {
 	bool interactive;
-} flags;
+} flag;
 
 #endif
